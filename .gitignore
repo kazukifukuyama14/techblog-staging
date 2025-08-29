@@ -1,0 +1,106 @@
+# Hugo ビルド成果物
+public/
+resources/
+.hugo_build.lock
+
+# 一時ファイル
+*.tmp
+*.temp
+*.swp
+*.swo
+*~
+
+# OS生成ファイル
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
+
+# ログファイル
+*.log
+logs/
+
+# 環境設定ファイル
+.env
+.env.local
+.env.production
+.env.staging
+*.env
+
+# AWS関連
+.aws/
+aws-credentials
+*.pem
+*.key
+
+# Terraform関連
+.terraform/
+*.tfstate
+*.tfstate.*
+*.tfvars
+!example.tfvars
+.terraform.lock.hcl
+.terraform.tfstate.lock
+
+# IDE・エディタ
+.cursor/
+.idea/
+*.sublime-project
+*.sublime-workspace
+
+# Node.js関連（Hugoテーマで使用する場合）
+node_modules/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+package-lock.json
+yarn.lock
+
+# Hugo関連
+.hugo_build.lock
+hugo.exe
+hugo.darwin
+hugo.linux
+
+# バックアップファイル
+*.bak
+*.backup
+*.old
+
+# 圧縮ファイル
+*.zip
+*.tar.gz
+*.rar
+
+# 画像・メディアファイル（大容量）
+*.mp4
+*.avi
+*.mov
+*.wmv
+*.flv
+*.webm
+*.mkv
+
+# ドキュメント
+*.pdf
+*.doc
+*.docx
+*.xls
+*.xlsx
+*.ppt
+*.pptx
+
+# アーカイブ
+*.7z
+*.bz2
+*.gz
+*.xz
+
+# その他
+.cache/
+.temp/
+tmp/
+temp/
