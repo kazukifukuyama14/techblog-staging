@@ -36,6 +36,15 @@ aws-credentials
 *.pem
 *.key
 
+# 認証情報・機密ファイル
+credentials/
+secrets/
+*.key
+*.pem
+*.p12
+*.pfx
+*.csv
+
 # Terraform関連
 .terraform/
 *.tfstate
