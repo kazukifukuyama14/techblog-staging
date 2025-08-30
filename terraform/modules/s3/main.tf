@@ -97,13 +97,17 @@ resource "aws_s3_bucket_lifecycle_configuration" "website" {
     id     = "cleanup-old-versions"
     status = "Enabled"
 
-    noncurrent_version_expiration {
-      noncurrent_days = 30
+    filter {
+      prefix = ""
     }
 
     noncurrent_version_transition {
-      noncurrent_days = 7
+      noncurrent_days = 30
       storage_class   = "STANDARD_IA"
+    }
+
+    noncurrent_version_expiration {
+      noncurrent_days = 60
     }
   }
 }

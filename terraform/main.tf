@@ -52,8 +52,8 @@ module "s3" {
   index_document                        = "index.html"
   error_document                        = "404.html"
   enable_public_access_block            = true
-  enable_bucket_policy                  = true
-  cloudfront_origin_access_identity_arn = module.cloudfront.origin_access_identity_arn
+  enable_bucket_policy                  = false # 一時的に無効化
+  cloudfront_origin_access_identity_arn = null  # 一時的にnull
 }
 
 # =============================================================================

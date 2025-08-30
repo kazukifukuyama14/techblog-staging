@@ -17,7 +17,7 @@ resource "aws_cloudfront_distribution" "main" {
 
   # オリジン設定
   origin {
-    domain_name = var.s3_bucket_id
+    domain_name = "${var.s3_bucket_id}.s3.amazonaws.com"
     origin_id   = "S3-${var.s3_bucket_id}"
 
     s3_origin_config {
@@ -58,12 +58,12 @@ resource "aws_cloudfront_distribution" "main" {
     response_page_path = "/index.html"
   }
 
-  # ログ設定
+  # ログ設定（オプション）
   dynamic "logging_config" {
-    for_each = var.enable_cloudwatch_logs ? [1] : []
+    for_each = var.enable_cloudwatch_logs && var.log_bucket_name != null ? [1] : []
     content {
       include_cookies = false
-      bucket          = var.log_bucket_name != null ? "${var.log_bucket_name}.s3.amazonaws.com" : null
+      bucket          = "${var.log_bucket_name}.s3.amazonaws.com"
       prefix          = "cloudfront-logs"
     }
   }
@@ -92,7 +92,7 @@ resource "aws_cloudfront_distribution" "main" {
 
 # CloudFrontキャッシュポリシー（オプション）
 resource "aws_cloudfront_cache_policy" "main" {
-  name        = "Managed-CachingOptimized"
+  name        = "Custom-CachingOptimized"
   comment     = "Optimized caching policy for static content"
   default_ttl = var.default_ttl
   max_ttl     = var.max_ttl
