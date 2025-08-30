@@ -1,0 +1,7 @@
+# Markdownlint除外ファイル
+# ドキュメント配下のすべてのMarkdownファイルを除外
+
+*.md
+requirements/*.md
+design/*.md
+operation/*.md

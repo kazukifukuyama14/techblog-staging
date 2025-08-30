@@ -51,6 +51,7 @@ secrets/
 *.tfstate.*
 *.tfplan
 *.tfvars
+tfplan
 !example.tfvars
 .terraform.lock.hcl
 .terraform.tfstate.lock
