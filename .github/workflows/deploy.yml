@@ -1,0 +1,64 @@
+name: Deploy Hugo Site to S3 and CloudFront
+
+on:
+  push:
+    branches: [main, develop]
+  pull_request:
+    branches: [main]
+
+env:
+  HUGO_VERSION: 0.149.0
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          submodules: true
+          fetch-depth: 0
+
+      - name: Setup Hugo
+        uses: peaceiris/actions-hugo@v3
+        with:
+          hugo-version: ${{ env.HUGO_VERSION }}
+          extended: true
+
+      - name: Build Hugo Site
+        run: |
+          cd hugo-site
+          hugo --minify
+
+      - name: Configure AWS credentials
+        uses: aws-actions/configure-aws-credentials@v4
+        with:
+          aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+          aws-region: ap-northeast-1
+
+      - name: Deploy to S3
+        run: |
+          cd hugo-site
+          aws s3 sync public/ s3://techblog-staging-staging-bucket-ud83sqdw --delete --cache-control max-age=86400
+
+      - name: Invalidate CloudFront
+        run: |
+          aws cloudfront create-invalidation \
+            --distribution-id E3IY2D06Y9FT5D \
+            --paths "/*"
+
+      - name: Notify deployment success
+        if: success()
+        run: |
+          echo "✅ Deployment successful!"
+          echo "🌐 Site URL: https://d3bflftl7cln1y.cloudfront.net"
+          echo "📊 CloudFront Distribution: E3IY2D06Y9FT5D"
+          echo "🪣 S3 Bucket: techblog-staging-staging-bucket-ud83sqdw"
+
+      - name: Notify deployment failure
+        if: failure()
+        run: |
+          echo "❌ Deployment failed!"
+          echo "Please check the logs above for details."
