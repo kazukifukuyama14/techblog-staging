@@ -2,11 +2,6 @@
 # CloudFrontモジュール メイン設定
 # =============================================================================
 
-# CloudFrontオリジンアクセスアイデンティティ
-resource "aws_cloudfront_origin_access_identity" "main" {
-  comment = "OAI for S3 bucket ${var.s3_bucket_id}"
-}
-
 # CloudFrontディストリビューション
 resource "aws_cloudfront_distribution" "main" {
   enabled             = true
@@ -14,14 +9,18 @@ resource "aws_cloudfront_distribution" "main" {
   price_class         = var.price_class
   retain_on_delete    = false
   wait_for_deployment = false
+  default_root_object = "index.html"
 
-  # オリジン設定
+  # オリジン設定（S3ウェブサイトエンドポイント使用）
   origin {
-    domain_name = "${var.s3_bucket_id}.s3.amazonaws.com"
-    origin_id   = "S3-${var.s3_bucket_id}"
+    domain_name = "${var.s3_bucket_id}.s3-website-ap-northeast-1.amazonaws.com"
+    origin_id   = "S3-Website-${var.s3_bucket_id}"
 
-    s3_origin_config {
-      origin_access_identity = aws_cloudfront_origin_access_identity.main.cloudfront_access_identity_path
+    custom_origin_config {
+      http_port              = 80
+      https_port             = 443
+      origin_protocol_policy = "http-only"
+      origin_ssl_protocols   = ["TLSv1.2"]
     }
   }
 
@@ -29,7 +28,7 @@ resource "aws_cloudfront_distribution" "main" {
   default_cache_behavior {
     allowed_methods        = var.allowed_methods
     cached_methods         = var.cached_methods
-    target_origin_id       = "S3-${var.s3_bucket_id}"
+    target_origin_id       = "S3-Website-${var.s3_bucket_id}"
     viewer_protocol_policy = var.enable_https ? "redirect-to-https" : "allow-all"
     compress               = var.enable_compression
 
@@ -45,17 +44,17 @@ resource "aws_cloudfront_distribution" "main" {
     max_ttl     = var.max_ttl
   }
 
-  # エラーページ設定
+  # エラーページ設定（Hugo静的サイト用）
   custom_error_response {
     error_code         = 404
-    response_code      = "200"
-    response_page_path = "/index.html"
+    response_code      = "404"
+    response_page_path = "/404.html"
   }
 
   custom_error_response {
     error_code         = 403
-    response_code      = "200"
-    response_page_path = "/index.html"
+    response_code      = "403"
+    response_page_path = "/404.html"
   }
 
   # ログ設定（オプション）
@@ -87,7 +86,7 @@ resource "aws_cloudfront_distribution" "main" {
     Purpose = "Static Website CDN"
   })
 
-  depends_on = [aws_cloudfront_origin_access_identity.main]
+
 }
 
 # CloudFrontキャッシュポリシー（オプション）

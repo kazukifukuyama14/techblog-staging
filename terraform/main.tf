@@ -51,9 +51,17 @@ module "s3" {
   enable_website_configuration          = true
   index_document                        = "index.html"
   error_document                        = "404.html"
-  enable_public_access_block            = true
-  enable_bucket_policy                  = false # 一時的に無効化
-  cloudfront_origin_access_identity_arn = null  # 一時的にnull
+  enable_public_access_block            = false
+  enable_bucket_policy                  = true
+  cloudfront_origin_access_identity_arn = null
+}
+
+# =============================================================================
+# CloudFront Origin Access Identity（循環依存回避のため先に作成）
+# =============================================================================
+
+resource "aws_cloudfront_origin_access_identity" "main" {
+  comment = "OAI for ${local.name_prefix}"
 }
 
 # =============================================================================
@@ -63,16 +71,18 @@ module "s3" {
 module "cloudfront" {
   source = "./modules/cloudfront"
 
-  s3_bucket_id           = module.s3.bucket_id
-  s3_bucket_arn          = module.s3.bucket_arn
-  price_class            = var.cloudfront_price_class
-  default_ttl            = var.cloudfront_default_ttl
-  min_ttl                = var.cloudfront_min_ttl
-  max_ttl                = var.cloudfront_max_ttl
-  enable_cloudwatch_logs = var.enable_cloudwatch_logs
-  enable_compression     = true
-  enable_https           = true
-  tags                   = local.tags
+  s3_bucket_id                   = module.s3.bucket_id
+  s3_bucket_arn                  = module.s3.bucket_arn
+  origin_access_identity_iam_arn = aws_cloudfront_origin_access_identity.main.iam_arn
+  origin_access_identity_path    = aws_cloudfront_origin_access_identity.main.cloudfront_access_identity_path
+  price_class                    = var.cloudfront_price_class
+  default_ttl                    = var.cloudfront_default_ttl
+  min_ttl                        = var.cloudfront_min_ttl
+  max_ttl                        = var.cloudfront_max_ttl
+  enable_cloudwatch_logs         = var.enable_cloudwatch_logs
+  enable_compression             = true
+  enable_https                   = true
+  tags                           = local.tags
 
   depends_on = [module.s3]
 }
