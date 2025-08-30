@@ -63,7 +63,7 @@ output "security_info" {
   description = "セキュリティ情報"
   value = {
     s3_bucket_policy                  = module.s3.bucket_policy_id
-    cloudfront_origin_access_identity = module.cloudfront.origin_access_identity_id
+    cloudfront_origin_access_identity = aws_cloudfront_origin_access_identity.main.id
   }
   sensitive = true
 }

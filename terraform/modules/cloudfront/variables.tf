@@ -77,3 +77,13 @@ variable "cached_methods" {
   type        = list(string)
   default     = ["GET", "HEAD"]
 }
+
+variable "origin_access_identity_iam_arn" {
+  description = "CloudFront Origin Access IdentityのIAM ARN"
+  type        = string
+}
+
+variable "origin_access_identity_path" {
+  description = "CloudFront Origin Access Identityのパス"
+  type        = string
+}
