@@ -1,0 +1,85 @@
+baseURL = 'https://d3bflftl7cln1y.cloudfront.net/'
+languageCode = 'ja'
+title = 'AWS + Hugo テックブログ'
+theme = 'PaperMod'
+
+[params]
+  env = "production"
+  title = "AWS + Hugo テックブログ"
+  description = "AWSとHugoを使った静的サイトのテックブログです"
+  keywords = ["AWS", "Hugo", "Terraform", "CloudFront", "S3", "テックブログ"]
+  author = "Developer"
+
+  # 日付フォーマット
+  DateFormat = "2006年1月2日"
+
+  # 表示設定
+  ShowReadingTime = true
+  ShowShareButtons = true
+  ShowPostNavLinks = true
+  ShowBreadCrumbs = true
+  ShowCodeCopyButtons = true
+  ShowWordCount = true
+  ShowRssButtonInSectionTermList = true
+  UseHugoToc = true
+  disableSpecial1stPost = false
+  disableScrollToTop = false
+  comments = false
+  hidemeta = false
+  hideSummary = false
+  showtoc = false
+  tocopen = false
+
+  # アセット設定
+  assets.favicon = "/favicon.ico"
+  assets.favicon16x16 = "/favicon-16x16.png"
+  assets.favicon32x32 = "/favicon-32x32.png"
+  assets.apple_touch_icon = "/apple-touch-icon.png"
+  assets.safari_pinned_tab = "/safari-pinned-tab.svg"
+
+  # ホームページ設定
+  [params.homeInfoParams]
+    Title = "AWS + Hugo テックブログへようこそ"
+    Content = "AWSとHugoを使った静的サイトの構築、運用に関する技術情報を発信しています。"
+
+  # SNS設定
+  [[params.socialIcons]]
+    name = "github"
+    url = "https://github.com/kazukifukuyama14/techblog-staging"
+
+# メニュー設定
+[menu]
+  [[menu.main]]
+    identifier = "home"
+    name = "ホーム"
+    url = "/"
+    weight = 10
+  [[menu.main]]
+    identifier = "posts"
+    name = "記事"
+    url = "/posts/"
+    weight = 20
+  [[menu.main]]
+    identifier = "categories"
+    name = "カテゴリ"
+    url = "/categories/"
+    weight = 30
+  [[menu.main]]
+    identifier = "tags"
+    name = "タグ"
+    url = "/tags/"
+    weight = 40
+  [[menu.main]]
+    identifier = "about"
+    name = "このブログについて"
+    url = "/about/"
+    weight = 50
+
+# マークアップ設定
+[markup]
+  [markup.highlight]
+    noClasses = false
+    codeFences = true
+    guessSyntax = true
+    lineNos = true
+    style = "github"
