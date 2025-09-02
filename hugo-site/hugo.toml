@@ -1,4 +1,4 @@
-baseURL = 'https://d3bflftl7cln1y.cloudfront.net/'
+baseURL = 'https://d1zo83ah1w5tci.cloudfront.net/'
 languageCode = 'ja'
 title = 'AWS + Hugo テックブログ'
 theme = 'PaperMod'
