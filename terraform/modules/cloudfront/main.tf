@@ -11,16 +11,13 @@ resource "aws_cloudfront_distribution" "main" {
   wait_for_deployment = false
   default_root_object = "index.html"
 
-  # オリジン設定（S3ウェブサイトエンドポイント使用）
+  # オリジン設定（S3 Origin Access Identity使用）
   origin {
-    domain_name = "${var.s3_bucket_id}.s3-website-ap-northeast-1.amazonaws.com"
+    domain_name = "${var.s3_bucket_id}.s3.amazonaws.com"
     origin_id   = "S3-Website-${var.s3_bucket_id}"
 
-    custom_origin_config {
-      http_port              = 80
-      https_port             = 443
-      origin_protocol_policy = "http-only"
-      origin_ssl_protocols   = ["TLSv1.2"]
+    s3_origin_config {
+      origin_access_identity = var.origin_access_identity_path
     }
   }
 
