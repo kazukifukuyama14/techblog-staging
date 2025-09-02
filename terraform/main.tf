@@ -51,9 +51,9 @@ module "s3" {
   enable_website_configuration          = true
   index_document                        = "index.html"
   error_document                        = "404.html"
-  enable_public_access_block            = true
-  enable_bucket_policy                  = true
-  cloudfront_origin_access_identity_arn = aws_cloudfront_origin_access_identity.main.s3_canonical_user_id
+  enable_public_access_block            = false
+  enable_bucket_policy                  = false
+  cloudfront_origin_access_identity_arn = null
 
   depends_on = [aws_cloudfront_origin_access_identity.main]
 }
