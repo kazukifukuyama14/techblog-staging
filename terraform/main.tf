@@ -53,7 +53,7 @@ module "s3" {
   error_document                        = "404.html"
   enable_public_access_block            = true
   enable_bucket_policy                  = true
-  cloudfront_origin_access_identity_arn = aws_cloudfront_origin_access_identity.main.iam_arn
+  cloudfront_origin_access_identity_arn = aws_cloudfront_origin_access_identity.main.s3_canonical_user_id
 
   depends_on = [aws_cloudfront_origin_access_identity.main]
 }

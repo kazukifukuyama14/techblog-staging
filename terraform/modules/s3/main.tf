@@ -76,7 +76,7 @@ resource "aws_s3_bucket_policy" "website" {
         Sid    = "CloudFrontAccess"
         Effect = "Allow"
         Principal = {
-          AWS = var.cloudfront_origin_access_identity_arn
+          CanonicalUser = var.cloudfront_origin_access_identity_arn
         }
         Action   = "s3:GetObject"
         Resource = "${aws_s3_bucket.website.arn}/*"
