@@ -56,7 +56,6 @@ techblog-staging/
 │       ├── cloudfront/           # CloudFront構成
 │       └── iam/                  # IAMユーザー・ポリシー
 ├── .github/workflows/            # GitHub Actions
-└── scripts/                      # 補助スクリプト
 ```
 
 ## 🚀 クイックスタート
