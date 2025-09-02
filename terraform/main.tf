@@ -51,9 +51,11 @@ module "s3" {
   enable_website_configuration          = true
   index_document                        = "index.html"
   error_document                        = "404.html"
-  enable_public_access_block            = false
+  enable_public_access_block            = true
   enable_bucket_policy                  = true
-  cloudfront_origin_access_identity_arn = null
+  cloudfront_origin_access_identity_arn = aws_cloudfront_origin_access_identity.main.iam_arn
+
+  depends_on = [aws_cloudfront_origin_access_identity.main]
 }
 
 # =============================================================================
@@ -84,7 +86,7 @@ module "cloudfront" {
   enable_https                   = true
   tags                           = local.tags
 
-  depends_on = [module.s3]
+  depends_on = [module.s3, aws_cloudfront_origin_access_identity.main]
 }
 
 # =============================================================================

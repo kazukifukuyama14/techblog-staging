@@ -42,21 +42,21 @@ jobs:
       - name: Deploy to S3
         run: |
           cd hugo-site
-          aws s3 sync public/ s3://techblog-staging-staging-bucket-ud83sqdw --delete --cache-control max-age=86400
+          aws s3 sync public/ s3://techblog-staging-staging-bucket-sdq41kwy --delete --cache-control max-age=86400
 
       - name: Invalidate CloudFront
         run: |
           aws cloudfront create-invalidation \
-            --distribution-id E3IY2D06Y9FT5D \
+            --distribution-id E2KOUEP39H8WOZ \
             --paths "/*"
 
       - name: Notify deployment success
         if: success()
         run: |
           echo "✅ Deployment successful!"
-          echo "🌐 Site URL: https://d3bflftl7cln1y.cloudfront.net"
-          echo "📊 CloudFront Distribution: E3IY2D06Y9FT5D"
-          echo "🪣 S3 Bucket: techblog-staging-staging-bucket-ud83sqdw"
+          echo "🌐 Site URL: https://d2bw68u9jjrygo.cloudfront.net"
+          echo "📊 CloudFront Distribution: E2KOUEP39H8WOZ"
+          echo "🪣 S3 Bucket: techblog-staging-staging-bucket-sdq41kwy"
 
       - name: Notify deployment failure
         if: failure()
