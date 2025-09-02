@@ -56,7 +56,7 @@ variable "enable_bucket_policy" {
 }
 
 variable "cloudfront_origin_access_identity_arn" {
-  description = "CloudFrontオリジンアクセスアイデンティティのARN"
+  description = "CloudFrontオリジンアクセスアイデンティティのCanonicalUser ID"
   type        = string
   default     = null
 }
