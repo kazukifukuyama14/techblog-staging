@@ -47,15 +47,15 @@ jobs:
       - name: Invalidate CloudFront
         run: |
           aws cloudfront create-invalidation \
-            --distribution-id E2KOUEP39H8WOZ \
+            --distribution-id EUQ51B52GKGO5 \
             --paths "/*"
 
       - name: Notify deployment success
         if: success()
         run: |
           echo "✅ Deployment successful!"
-          echo "🌐 Site URL: https://d2bw68u9jjrygo.cloudfront.net"
-          echo "📊 CloudFront Distribution: E2KOUEP39H8WOZ"
+          echo "🌐 Site URL: https://d2z3p06r0nckst.cloudfront.net"
+          echo "📊 CloudFront Distribution: EUQ51B52GKGO5"
           echo "🪣 S3 Bucket: techblog-staging-staging-bucket-sdq41kwy"
 
       - name: Notify deployment failure
