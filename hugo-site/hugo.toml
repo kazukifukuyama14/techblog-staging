@@ -11,9 +11,6 @@ theme = 'Paper'
 
   # Paper テーマ固有の設定
   color = "linen"  # linen, wheat, gray, light, dark
-  twitter = ""
-  github = "kazukifukuyama14/techblog-staging"
-  instagram = ""
   rss = true
 
   # 日付フォーマット
@@ -29,30 +26,15 @@ theme = 'Paper'
 # メニュー設定
 [menu]
   [[menu.main]]
-    identifier = "home"
-    name = "ホーム"
-    url = "/"
+    identifier = "about"
+    name = "About"
+    url = "/about/"
     weight = 10
   [[menu.main]]
-    identifier = "posts"
-    name = "記事"
-    url = "/posts/"
+    identifier = "info"
+    name = "Info"
+    url = "/info/"
     weight = 20
-  [[menu.main]]
-    identifier = "categories"
-    name = "カテゴリ"
-    url = "/categories/"
-    weight = 30
-  [[menu.main]]
-    identifier = "tags"
-    name = "タグ"
-    url = "/tags/"
-    weight = 40
-  [[menu.main]]
-    identifier = "about"
-    name = "このブログについて"
-    url = "/about/"
-    weight = 50
 
 # マークアップ設定
 [markup]
