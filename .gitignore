@@ -58,6 +58,7 @@ tfplan
 
 # IDE・エディタ
 .cursor/
+.kiro/
 .idea/
 *.sublime-project
 *.sublime-workspace
