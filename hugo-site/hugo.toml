@@ -1,4 +1,3 @@
-# baseURL = 'https://d1zo83ah1w5tci.cloudfront.net/'  # ← リポジトリから削除/コメントアウト
 baseURL = "/"                                         # ローカル/プレビュー用（必要に応じて）
 languageCode = 'ja'
 title = 'AWS + Hugo テックブログ'
