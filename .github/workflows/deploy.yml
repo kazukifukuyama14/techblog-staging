@@ -26,15 +26,17 @@ jobs:
           hugo-version: ${{ env.HUGO_VERSION }}
           extended: true
 
-      - name: Build Hugo Site
+      - name: Build
+        if: github.ref == 'refs/heads/main' && !cancelled()
+        working-directory: hugo-site
+        env:
+          HUGO_BASEURL: ${{ secrets.BASE_URL }}
         run: |
-          cd hugo-site
           hugo --minify
 
       - name: Configure AWS credentials
         uses: aws-actions/configure-aws-credentials@v4
         with:
-          # GitHub Secrets: AWS_ACCESS_KEY_ID and AWS_SECRET_ACCESS_KEY are configured in repository settings
           aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
           aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
           aws-region: ap-northeast-1
@@ -49,7 +51,6 @@ jobs:
           aws cloudfront create-invalidation \
             --distribution-id E1FIQFTIZP611J \
             --paths "/*"
-
       - name: Notify deployment success
         if: success()
         run: |
@@ -62,4 +63,5 @@ jobs:
         if: failure()
         run: |
           echo "❌ Deployment failed!"
+          echo "Please check the logs above for details."
           echo "Please check the logs above for details."
