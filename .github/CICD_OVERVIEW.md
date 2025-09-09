@@ -1,8 +1,8 @@
-# 🚀 CI/CD パイプライン
+# CI/CD パイプライン
 
 このディレクトリには、AWS + Hugo テックブログの自動デプロイ用の GitHub Actions ワークフローが含まれています。
 
-## 📋 概要
+## 概要
 
 ### デプロイフロー
 
@@ -22,7 +22,7 @@ graph LR
 - **develop**: ステージング環境デプロイ
 - **Pull Request**: ビルドテストのみ
 
-## 🔧 ワークフロー詳細
+## ワークフロー詳細
 
 ### deploy.yml
 
@@ -43,7 +43,7 @@ graph LR
 6. **CloudFront 無効化**: キャッシュの無効化
 7. **通知**: デプロイ結果の通知
 
-## 🔐 必要な設定
+## 必要な設定
 
 ### GitHub Secrets
 
@@ -63,7 +63,7 @@ IAM ユーザーには以下の権限が必要です：
 - **S3**: `s3:PutObject`, `s3:DeleteObject`, `s3:ListBucket`
 - **CloudFront**: `cloudfront:CreateInvalidation`
 
-## 📊 デプロイ先リソース
+## デプロイ先リソース
 
 ### 現在の環境
 
@@ -72,7 +72,7 @@ IAM ユーザーには以下の権限が必要です：
 - **URL**: `https://d3bflftl7cln1y.cloudfront.net`
 - **リージョン**: `ap-northeast-1`
 
-## 🔍 監視・ログ
+## 監視・ログ
 
 ### GitHub Actions
 
@@ -86,7 +86,7 @@ IAM ユーザーには以下の権限が必要です：
 - **CloudFront メトリクス**: リクエスト数、エラー率など
 - **ロググループ**: `/aws/cloudfront/techblog-staging-staging`
 
-## 🚨 トラブルシューティング
+## トラブルシューティング
 
 ### よくある問題
 
@@ -125,7 +125,7 @@ IAM ユーザーには以下の権限が必要です：
    aws cloudfront get-distribution --id E3IY2D06Y9FT5D
    ```
 
-## 📈 パフォーマンス最適化
+## パフォーマンス最適化
 
 ### ビルド時間短縮
 
@@ -139,7 +139,7 @@ IAM ユーザーには以下の権限が必要です：
 - **圧縮**: gzip 圧縮の活用
 - **キャッシュ制御**: 適切な Cache-Control ヘッダー
 
-## 🔄 今後の改善予定
+## 今後の改善予定
 
 - [ ] テスト自動化の追加
 - [ ] セキュリティスキャンの統合
