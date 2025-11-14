@@ -11,7 +11,7 @@ description = 'お問い合わせ・サイト情報'
 
 技術的な質問や改善提案がございましたら、以下の方法でお気軽にお寄せください。
 
-- **GitHub Issues**: [techblog-staging/issues](https://github.com/kazukifukuyama14/techblog-staging/issues)
+- **GitHub Issues**: [techblog-staging/issues](https://github.com/wan0ri/techblog-staging/issues)
 - **GitHub Discussions**: 一般的な議論・質問
 
 ### その他のお問い合わせ
@@ -54,7 +54,7 @@ description = 'お問い合わせ・サイト情報'
 
 ### ソーシャル
 
-- **GitHub**: [kazukifukuyama14](https://github.com/kazukifukuyama14/techblog-staging)
+- **GitHub**: [wan0ri](https://github.com/wan0ri/techblog-staging)
 
 ## 📄 免責事項
 

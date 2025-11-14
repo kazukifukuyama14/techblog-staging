@@ -38,7 +38,7 @@ AWS と Hugo を組み合わせた低コスト・高パフォーマンスな静�
 
 ```bash
 # リポジトリのクローン
-git clone https://github.com/kazukifukuyama14/techblog-staging.git
+git clone https://github.com/wan0ri/techblog-staging.git
 cd techblog-staging
 
 # developブランチに切り替え
